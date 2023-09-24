@@ -1,0 +1,21 @@
+{
+    "name" : "Steve",
+    "profession" : "software engineer",
+    "age" : 20,
+    "residence" : "s. korea",
+    "adress" : "busan",
+    "language" : ["uzbek, korean, english"],
+    "skills" : ["html, css, js, node.js, python"],
+    "extra_skills" : ["Bootstrap", "Materialize", "Styling sass", "Django", "Flask" , "Git knowledge" ],
+    "work_place" : "IT company",
+    "servise_desk" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, eius",
+    "about_me"  : " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, eius  ",
+    "city" : "termez",
+    "title" : ["flower", "seedlings", "gardner", "old", "new"],
+    "flower_desc" : ["what is the flower", "what is the seedling", " who is gardner"],
+    "flower_name" : ["toolip", "daffotil", "poopy", "sunflower", "bluebell" , "rose", "snowdrop" ,"cherry", "blossom"],
+    "flower_price" : ["15$", "25$", "12$", "20$" , "35$", " 30$" ,"22$", "40$", "45$"],
+    "famous_words" : ["world is beautiful with flower"], 
+    "famous_name" : ["steve jobs"]
+    
+}
