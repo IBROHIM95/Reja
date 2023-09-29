@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "bu bizning birinchi loyihamiz",
   "main": "server.js",
-  
   "scripts": {
     "start": "node server.js",
-    "dev"  :  "nodemon server.js, harid.ejs",
-    "train" : "nodemon train.js ",
+    "dev": "nodemon server.js, harid.ejs",
+    "train": "nodemon train.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ali",
@@ -15,6 +14,8 @@
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "nodemon": "^3.0.1"
+    "moment": "^2.29.4",
+    "nodemon": "^3.0.1",
+    "validator": "^13.11.0"
   }
 }

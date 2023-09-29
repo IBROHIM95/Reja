@@ -1,4 +1,4 @@
-console.log("Jack Ma maslahatlari");
+// console.log("Jack Ma maslahatlari");
 
 const list = [
     "yaxshi talaba boling", //0-20
@@ -28,7 +28,7 @@ maslahatBering(67, (err,data) => {
 })
 
 
-console.log(2); 
+// console.log(2); 
 
 //  async function maslahatBering(a) {
 //     if(typeof a !== "number") throw new Error("insert a number")
@@ -65,3 +65,4 @@ console.log(2);
 //     console.log(javob);
 // }
 // yugur()
+  
