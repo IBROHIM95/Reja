@@ -35,15 +35,12 @@ app.set('view engine', 'ejs') //view jsni  ejs ekanligini ko'rsatyapmiz
 //     res.end(' <h1> hello world by Ali </h1> ')
 // } );
 app.post('/create-item', (req, res) => {
-    console.log(req.body);
+  console.log('user entered /create-item');
+    
     const new_reja = req.body.reja;
     db.collection("plans").insertOne({reja: new_reja}, (err,data) =>{
-      if(err) {
-        console.log(err);
-        res.end("something went wrong")
-      }else{
-        res.end("succesfully added")
-      }
+      console.log(data.ops);
+      res.json(data.ops[0])
     } )
 })
 
@@ -57,7 +54,7 @@ app.get('/' , function(req, res)  {
     if(err) {
       console.log(err);
       res.end("something went wrong")
-    }else{
+    } else{
       
       res.render("reja", {items:data} )
     }
