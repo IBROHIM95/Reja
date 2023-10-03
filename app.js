@@ -7,7 +7,7 @@ const http  = require('http')
 const fs = require('fs');
 
 // ModeDB chaqirish
-// const db = require("./server").db();
+const db = require("./server").db();
 
 // let user;
 // fs.readFile("database/user.json", "utf-8", (err, data) => {
@@ -34,9 +34,17 @@ app.set('view engine', 'ejs') //view jsni  ejs ekanligini ko'rsatyapmiz
 // app.get('/', function(req,res) {
 //     res.end(' <h1> hello world by Ali </h1> ')
 // } );
-app.post('/create-item', function(req, res)  {
+app.post('/create-item', (req, res) => {
     console.log(req.body);
-    res.json({test:'success'})
+    const new_reja = req.body.reja;
+    db.collection("plans").insertOne({reja: new_reja}, (err,data) =>{
+      if(err) {
+        console.log(err);
+        res.end("something went wrong")
+      }else{
+        res.end("succesfully added")
+      }
+    } )
 })
 
 app.get('/author', (req, res) => {
@@ -44,7 +52,17 @@ app.get('/author', (req, res) => {
 } )
 
 app.get('/' , function(req, res)  {
-   res.render('reja')
+  console.log('user entered /');
+  db.collection("plans").find().toArray((err,data) => {
+    if(err) {
+      console.log(err);
+      res.end("something went wrong")
+    }else{
+      
+      res.render("reja", {items:data} )
+    }
+  } )
+   
 } )
 
 // const server = http.createServer(app)    // createServer() bitta parametr qabul qiladi

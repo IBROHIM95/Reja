@@ -1,5 +1,5 @@
 const http  = require('http');
-const app = require('./app');
+
 const mongodb = require('mongodb')
 
 
@@ -14,7 +14,7 @@ mongodb.connect(connectionString, {
     if(err) console.log("Error connection on MongoDb");
     else{
         console.log("MongoDB connection succed");
-        // module.exports = client 
+        module.exports = client 
         const app = require('./app');
         const server = http.createServer(app)    // createServer() bitta parametr qabul qiladi
         let PORT = 3000;
