@@ -1,4 +1,4 @@
-console.log('web serverni boshlash');
+
 
 const express = require('express') //expresdan intens yasash kerak
 // const res = require('express/lip/response');
@@ -8,6 +8,7 @@ const fs = require('fs');
 
 // ModeDB chaqirish
 const db = require("./server").db();
+const mongodb = require('mongodb')
 
 // let user;
 // fs.readFile("database/user.json", "utf-8", (err, data) => {
@@ -34,23 +35,55 @@ app.set('view engine', 'ejs') //view jsni  ejs ekanligini ko'rsatyapmiz
 // app.get('/', function(req,res) {
 //     res.end(' <h1> hello world by Ali </h1> ')
 // } );
-app.post('/create-item', (req, res) => {
+app.post('/create-item', function(req, res) {
   console.log('user entered /create-item');
     
     const new_reja = req.body.reja;
-    db.collection("plans").insertOne({reja: new_reja}, (err,data) =>{
-      console.log(data.ops);
-      res.json(data.ops[0])
+    db.collection("plans").insertOne({reja: new_reja}, 
+      (err,data) =>{
+       res.json(data.ops[0])
     } )
 })
 
-app.get('/author', (req, res) => {
-  res.render('author', {user:user})
+app.post("/delete-item", (req,res) =>{
+  const id = req.body.id;
+  db.collection('plans').deleteOne(
+    {_id: new mongodb.ObjectId(id)},
+    function (err,data) {
+      res.json({state: 'success'})
+    }
+  )
+} );
+
+app.post("/edit-item", (req,res)=>{
+  const data = req.body;
+  db.collection("plans").findOneAndUpdate(
+    {_id: new mongodb.ObjectId(data.id)},
+    {$set: {reja:data.new_input}},
+    function(err,data) {
+      res.json({state: 'success'})
+    }
+  )
+  
 } )
+
+app.post('/delete-all', (req, res) => {
+  if(req.body.delete_all) {
+    db.collection('plans').deleteMany(function() {
+      res.json({state: 'hammasi ochirildi'})
+    })
+  }
+} )
+
+// app.get('/author', (req, res) => {
+//   res.render('author', {user:user})
+// } )
 
 app.get('/' , function(req, res)  {
   console.log('user entered /');
-  db.collection("plans").find().toArray((err,data) => {
+  db.collection("plans")
+  .find()
+  .toArray((err,data) => {
     if(err) {
       console.log(err);
       res.end("something went wrong")
