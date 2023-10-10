@@ -88,3 +88,20 @@ document.addEventListener("click", function (e) {
     }
   }
 });
+
+document.getElementById("clean-all").addEventListener("click", function () {
+  axios
+    .post("/delete-all", { delete_all: true })
+    .then((res) => {
+      alert(res.data.state);
+      const list = document.getElementById("item-list");
+      while (list.firstChild) {
+        list.removeChild(list.firstChild);
+      }
+    })
+    .catch((err) => {
+      if (err) {
+        console.log("Something went wrong try again");
+      }
+    });
+});

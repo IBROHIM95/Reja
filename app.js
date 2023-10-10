@@ -84,21 +84,18 @@ app.post("/edit-item", (req, res) => {
   );
 });
   
+app.post("/delete-all", (req, res) => {
+  if (req.body.delete_all) {
+    db.collection("plans").deleteMany(function (err, data) {
+      if (data) {
+        res.json({ state: "All plans are deleted" });
+      } else {
+        err;
+      }
+    });
+  }
+});
 
-// app.get('/', (req, res) => {
-//   db.collection('plans')
-//   .find()
-//   .toArray((err,data) => {
-//     if(err) {
-//       console.log(err);
-//       res.end('something went wrong')
-//     }else {
-//       console.log(data);
-//       res.render('reja', {items:data})
-//     }
-//   } )
-  
-// } )
 app.get("/", (req, res) => {
   console.log("user entered /");
   db.collection("plans")
